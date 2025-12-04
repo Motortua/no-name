@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ucapan Ulang Tahun — Klik Balon</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="stage">
+    <h1 class="sr-only">Ucapan Ulang Tahun Interaktif</h1>
+
+    <div id="instruction" class="instruction">Klik balon untuk membuka pesan</div>
+
+    <div id="balloon-area" class="balloon-area" aria-label="Area balon">
+      <!-- Balon akan muncul di sini -->
+      <div class="balloon" data-balloon-id="1" style="--i:0;"></div>
+      <div class="balloon" data-balloon-id="2" style="--i:1;"></div>
+      <div class="balloon" data-balloon-id="3" style="--i:2;"></div>
+      <div class="balloon" data-balloon-id="4" style="--i:3;"></div>
+      <div class="balloon" data-balloon-id="5" style="--i:4;"></div>
+      <div class="balloon" data-balloon-id="6" style="--i:5;"></div>
+    </div>
+
+    <div id="message" class="message hidden" role="region" aria-live="polite">
+      <div class="slides-container">
+        <div class="slide slide-1 active">
+          <div class="slide-overlay additional-slide" aria-hidden="false">
+            <p id="additionalSlide" class="additional-message"></p>
+          </div>
+        </div>
+        <div class="slide slide-2">
+          <div class="slide-overlay">
+            <p class="slide-greeting">Selamat Ulang Tahun!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- slide controls moved outside background (below slides) -->
+      <div class="slide-controls">
+        <button id="prevBtn" class="slide-btn">❮</button>
+        <button id="nextBtn" class="slide-btn">❯</button>
+      </div>
+
+      <!-- message content placed under the slides (greeting & names only) -->
+      <div class="message-content">
+        <p id="greeting" class="greeting">Selamat Ulang Tahun!</p>
+        <p id="names" class="names">Alvensia · Rinda · Mirella</p>
+      </div>
+
+      <button id="resetBtn" class="btn">Mulai Lagi</button>
+    </div>
+
+    <div id="confetti-container" class="confetti-container"></div>
+
+    <audio id="bgAudio" src="music.mp3" preload="auto"></audio>
+    <audio id="popAudio" src="pop.mp3" preload="auto"></audio>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

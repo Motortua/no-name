@@ -1,0 +1,83 @@
+t/* style.css — styling untuk balon dan pesan */
+:root{
+  --bg:#0b1226;
+  --accent1:#ff6b6b;
+  --accent2:#ffd166;
+  --accent3:#6bc1ff;
+  --accent4:#b58cff;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#1a1a2e,#16213e,#0f3460);color:#fff}
+.stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:20px}
+.instruction{font-size:24px;color:#ffd166;font-weight:600;text-align:center;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.balloon-area{position:relative;width:100%;max-width:1100px;height:60vh;min-height:420px;overflow:hidden}
+.balloon{--size:120px;position:absolute;bottom:-150px;width:var(--size);height:calc(var(--size)*1.2);border-radius:60% 60% 55% 55%/70% 70% 30% 30%;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;transform-origin:center bottom;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .18s ease}
+.balloon::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:-38px;width:2px;height:36px;background:rgba(255,255,255,0.25)}
+.balloon::before{content:'';position:absolute;left:50%;transform:translateX(-50%) rotate(25deg);bottom:-60px;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6)}
+/* colors */
+.balloon[data-balloon-id="1"]{background:black;left:8%;animation:float 6s ease-in-out infinite;transform:translateY(0)}
+.balloon[data-balloon-id="2"]{background:black;left:28%;animation:float 5.5s ease-in-out infinite;--size:140px}
+.balloon[data-balloon-id="3"]{background:black;left:48%;animation:float 7s ease-in-out infinite;--size:110px}
+.balloon[data-balloon-id="4"]{background:black;left:68%;animation:float 6.5s ease-in-out infinite;--size:150px}
+.balloon[data-balloon-id="5"]{background:black;left:82%;animation:float 5.8s ease-in-out infinite}
+.balloon[data-balloon-id="6"]{background:black;left:58%;animation:float 6.9s ease-in-out infinite}
+
+@keyframes float{
+  0%{transform:translateY(0) translateX(0)}
+  50%{transform:translateY(-28vh) translateX(6px)}
+  100%{transform:translateY(0) translateX(0)}
+}
+
+.balloon.popped{transform:scale(.05) rotate(-30deg) !important;opacity:0;transition:transform .6s ease,opacity .6s ease}
+
+.confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+.confetti{position:absolute;width:10px;height:10px;background:#ffd166;pointer-events:none;animation:confetti-fall 3s linear forwards}
+@keyframes confetti-fall{
+  0%{opacity:1;transform:translateY(0) translateX(0) rotate(0deg)}
+  100%{opacity:0;transform:translateY(100vh) translateX(var(--tx)) rotate(360deg)}
+}
+
+.message{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);padding:0;border-radius:12px;box-shadow:0 12px 48px rgba(0,0,0,.6);width:85%;max-width:900px;height:85vh;max-height:750px;overflow:hidden;z-index:9000}
+.slides-container{position:relative;width:100%;height:500px;overflow:hidden;border-radius:12px 12px 0 0}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 0.6s ease}
+.slide.active{opacity:1}
+.slide-1{background-image:url('WhatsApp Image 2025-12-03 at 20.06.18.jpeg')}
+.slide-2{background-image:url('WhatsApp Image 2025-12-03 at 20.06.17.jpeg')}
+
+.message-content{position:relative;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);padding:24px 36px;text-align:center;z-index:5;flex:1;overflow-y:auto;display:flex;flex-direction:column;justify-content:center}
+.message.hidden{display:none}
+.greeting{font-size:44px;margin:0 0 8px;color:#ffffff}
+.names{font-size:26px;margin:0 0 16px;color:#fff}
+.additional-message{font-size:30px;margin:26px 0;line-height:2.6;color:#de119d;font-style:italic}
+.additional-slide{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:90%;text-align:center}
+
+.slide-controls{position:absolute;top:50%;transform:translateY(-50%);/* adjust control row to move buttons further inward */width:calc(100% + 60px);left:-30px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;gap:12px;background:transparent;z-index:10002;pointer-events:auto}
+.slide-btn{background:linear-gradient(180deg,#ffd166,#ffb74d);border:2px solid rgba(255,255,255,0.9);color:#111;width:64px;height:64px;border-radius:50%;cursor:pointer;font-size:26px;font-weight:800;transition:transform .12s ease,background .12s ease,box-shadow .12s ease;z-index:10003;box-shadow:0 8px 22px rgba(0,0,0,0.45);opacity:0.98}
+.slide-btn:hover{background:#fff;transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.55)}
+.slide-btn:focus{outline:none;box-shadow:0 0 0 4px rgba(255,209,102,0.18),0 12px 30px rgba(0,0,0,0.55)}
+
+/* move the next button slightly inward toward the slide */
+#nextBtn{transform:translateX(-8px)}
+
+.btn{background:#fff;border:none;color:#111;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:600;margin-top:12px;z-index:15}
+
+/* small screen adjustments */
+@media (max-width:900px){
+  .message{width:95%;max-width:95vw;height:90vh}
+  .slides-container{height:350px}
+  .greeting{font-size:32px}
+  .names{font-size:20px}
+  .additional-message{font-size:14px}
+}
+
+@media (max-width:600px){
+  .message{width:95%;height:85vh}
+  .slides-container{height:250px}
+  .greeting{font-size:24px}
+  .names{font-size:16px}
+  .additional-message{font-size:12px}
+}
+
+/* accessibility helper */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

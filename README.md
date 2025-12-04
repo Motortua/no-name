@@ -32,4 +32,3 @@ Panduan singkat — Ucapan Ulang Tahun Interaktif
 
 - Setelah mengedit `CONFIG`, simpan dan muat ulang `index.html` di browser.
 
-Butuh bantuan lagi? Pilih salah satu: tambahkan konfeti setelah klik, tombol "Bagikan"/download, atau buat video MP4 otomatis. Saya bisa kerjakan sekarang jika Anda mau.
